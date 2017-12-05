@@ -1,3 +1,7 @@
+// Nouredine Nour
+// TP PPD - MPI
+// Multiplication matrice vecteur version parallèle
+
 #include <mpi.h>
 #include <iostream>
 
@@ -117,30 +121,3 @@ int main(int argc, char *argv[]) {
   MPI_Finalize();
 
 }
-
-// Exemples de codes :
-
-// Fonction qui renvoie un double aléatoire dans [min; max]
-// double rand(double min, double max) {
-//   double res = ((double) rand()*(max-min)/(double)RAND_MAX-min);
-//   return res;
-// }
-
-// Allocation dynamique d'un tableau
-// double *tab;
-// tab = (double*) malloc( 50 * sizeof(double) );
-
-// Scatter
-// MPI_Scatter(tab, 25, MPI_DOUBLE, my_tab, 25, MPI_DOUBLE, 0, MPI_COMM_WORLD );
-
-// Send
-// MPI_Send(&msg, 1, MPI_INT, world_rank + 1, 0, MPI_COMM_WORLD);
-
-// Recv
-// MPI_Recv(&msg, 1, MPI_INT, world_rank + 1, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
-
-// Bcast
-// MPI_Bcast(&msg, 1, MPI_INT, 0, MPI_COMM_WORLD);
-
-// Reduce
-// MPI_Reduce(&my_mean, &summ, 1, MPI_DOUBLE, MPI_SUM, 0, MPI_COMM_WORLD);
