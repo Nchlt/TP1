@@ -1,7 +1,13 @@
 #include <mpi.h>
 #include <iostream>
+#include <cstdlib>
 
 using namespace std;
+
+// Fonction de comparaison pour le tri qsort
+int compare (const void * a, const void * b) {
+  return ( *(int*)a - *(int*)b );
+}
 
 int rand(int min, int max) {
   int res = rand()%(max-min + 1) + min;
@@ -31,7 +37,34 @@ int main(int argc, char *argv[]) {
 
   elt_per_proc = tab_size / size;
 
+  // On distribu une le tableau de manière égale entre tout les processus
   MPI_Scatter(tab, elt_per_proc, MPI_INT, my_tab, elt_per_proc, MPI_INT, 0, MPI_COMM_WORLD );
+  //
+  // if (pid==0) {
+  //   for(int i = 0; i < elt_per_proc; i++) {
+  //     cout << my_tab[i] << " ";
+  //   }
+  // }
+  if(pid==0) {
+    cout << "Avant de trier : \n";
+    cout << "[ ";
+    for(int i =0; i < elt_per_proc ; i++) {
+      cout << my_tab[i] << " ; ";
+    }
+    cout << "]\n";
+  }
+
+  qsort(my_tab, elt_per_proc, sizeof(int), compare);
+
+  if(pid==0) {
+    cout << "Après triage : \n";
+    cout << "[ ";
+    for(int i =0; i < elt_per_proc ; i++) {
+      cout << my_tab[i] << " ; ";
+    }
+    cout << "]\n";
+  }
+
 
   MPI_Finalize();
 
