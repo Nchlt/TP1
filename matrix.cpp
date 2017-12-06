@@ -1,6 +1,7 @@
 // Nouredine Nour
 // TP PPD - MPI
 // Multiplication matrice vecteur version parallèle
+// Version ou n est supposé divisible par p 
 
 #include <mpi.h>
 #include <iostream>
